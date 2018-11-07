@@ -23,7 +23,6 @@ public class RestISBNFormatterAction extends BaseRestHandler {
     public RestISBNFormatterAction(Settings settings, RestController controller) {
         super(settings);
         controller.registerHandler(GET, "/_isbn", this);
-        controller.registerHandler(GET, "/_isbn/{value}", this);
     }
 
     @Override

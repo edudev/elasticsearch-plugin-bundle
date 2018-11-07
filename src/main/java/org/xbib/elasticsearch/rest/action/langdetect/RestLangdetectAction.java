@@ -28,9 +28,7 @@ public class RestLangdetectAction extends BaseRestHandler {
     public RestLangdetectAction(Settings settings, RestController controller) {
         super(settings);
         controller.registerHandler(GET, "/_langdetect", this);
-        controller.registerHandler(GET, "/_langdetect/{profile}", this);
         controller.registerHandler(POST, "/_langdetect", this);
-        controller.registerHandler(POST, "/_langdetect/{profile}", this);
     }
 
     @Override

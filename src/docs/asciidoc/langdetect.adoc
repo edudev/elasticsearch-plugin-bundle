@@ -331,7 +331,7 @@ POST /test/_search
 
 [source]
 ----
-curl -XPOST 'localhost:9200/_langdetect?pretty' -d 'This is a test'
+curl -XPOST 'localhost:9200/_langdetect?pretty' -H 'Content-Type: application/json' -d '{"text": "This is a test"}'
 {
   "languages" : [
     {
@@ -344,7 +344,7 @@ curl -XPOST 'localhost:9200/_langdetect?pretty' -d 'This is a test'
 
 [source]
 ----
-curl -XPOST 'localhost:9200/_langdetect?pretty' -d 'Das ist ein Test'
+curl -XPOST 'localhost:9200/_langdetect?pretty' -H 'Content-Type: application/json' -d '{"text": "Das ist ein Test"}'
 {
   "languages" : [
     {
@@ -357,7 +357,7 @@ curl -XPOST 'localhost:9200/_langdetect?pretty' -d 'Das ist ein Test'
 
 [source]
 ----
-curl -XPOST 'localhost:9200/_langdetect?pretty' -d 'Datt isse ne test'
+curl -XPOST 'localhost:9200/_langdetect?pretty' -H 'Content-Type: application/json' -d '{"text": "Datt isse ne test"}'
 {
   "languages" : [
     {
@@ -392,7 +392,7 @@ There is a "short text" profile which is better to detect languages in a few wor
 
 [source]
 ----
-curl -XPOST 'localhost:9200/_langdetect?pretty&profile=short-text' -d 'Das ist ein Test'
+curl -XPOST 'localhost:9200/_langdetect?pretty&profile=short-text' -H 'Content-Type: application/json' -d '{"text": "Das ist ein Test"}'
 {
   "profile" : "/langdetect/short-text/",
   "languages" : [ {
