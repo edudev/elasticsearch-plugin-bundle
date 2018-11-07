@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.apache.lucene.util.UnicodeUtil.newString;
 
@@ -55,14 +56,13 @@ public class FstDecompounder {
     }
 
     private FST<Object> createGlueMorphemes(String[] glue) throws IOException {
-        for (int i = 0; i < glue.length; i++) {
-            glue[i] = new StringBuilder(glue[i]).reverse().toString();
-        }
-        Arrays.sort(glue);
+        List<String> sortedReversedGlue = Arrays.stream(glue).map(
+                g -> new StringBuilder(g).reverse().toString()).sorted().collect(Collectors.toList());
+
         final Builder<Object> builder = new Builder<>(INPUT_TYPE.BYTE4, NoOutputs.getSingleton());
         final Object nothing = NoOutputs.getSingleton().getNoOutput();
         IntsRefBuilder intsBuilder = new IntsRefBuilder();
-        for (String morpheme : glue) {
+        for (String morpheme : sortedReversedGlue) {
             fromUTF16ToUTF32(morpheme, intsBuilder);
             builder.add(intsBuilder.get(), nothing);
         }
